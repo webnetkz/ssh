@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "SSH",
+  "description": "Open SSH sessions in a dedicated dark Material style tab.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "128.png",
+    "32": "128.png",
+    "48": "128.png",
+    "128": "128.png"
+  },
+  "action": {
+    "default_title": "SSH",
+    "default_icon": {
+      "16": "128.png",
+      "32": "128.png",
+      "128": "128.png"
+    }
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "permissions": ["storage", "tabs"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' wss: ws://127.0.0.1:* ws://localhost:*;"
+  }
+}

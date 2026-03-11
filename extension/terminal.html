@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSH</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="top-bar card">
+        <div class="brand-block">
+          <img class="brand-logo" src="128.png" alt="SSH logo" />
+          <div>
+            <p class="eyebrow">Chrome Extension</p>
+            <h1>SSH</h1>
+            <p class="subtitle">Отдельная страница с dark Material дизайном.</p>
+          </div>
+        </div>
+        <span id="connectionStatus" class="status-chip offline">Offline</span>
+      </header>
+
+      <div class="workspace">
+        <section class="card terminal-card">
+          <header class="terminal-header">
+            <h2>Terminal</h2>
+            <div class="terminal-actions">
+              <button id="sendCtrlC" type="button" class="btn">Ctrl+C</button>
+              <button id="clearOutput" type="button" class="btn">Clear</button>
+            </div>
+          </header>
+
+          <pre id="terminalOutput" class="terminal-output" aria-live="polite"></pre>
+
+          <form id="commandForm" class="command-form" autocomplete="off">
+            <label for="commandInput">Input</label>
+            <input
+              id="commandInput"
+              type="text"
+              placeholder="Введите команду и нажмите Enter"
+              disabled
+            />
+            <button type="submit" class="btn btn-primary" disabled id="sendButton">Send</button>
+          </form>
+        </section>
+
+        <section class="card connection-card">
+          <h2>Connection</h2>
+          <form id="connectionForm" class="connection-form" autocomplete="off">
+            <label>
+              Host
+              <input id="host" type="text" placeholder="example.com" required />
+            </label>
+            <label>
+              Port
+              <input id="port" type="number" min="1" max="65535" value="22" required />
+            </label>
+            <label>
+              Username
+              <input id="username" type="text" placeholder="root" required />
+            </label>
+            <label>
+              Authentication
+              <select id="authMethod">
+                <option value="password">Password</option>
+                <option value="privateKey">Private key</option>
+              </select>
+            </label>
+
+            <div id="passwordGroup" class="auth-group">
+              <label>
+                Password
+                <input id="password" type="password" placeholder="••••••••" />
+              </label>
+            </div>
+
+            <div id="keyGroup" class="auth-group hidden">
+              <label>
+                Private key
+                <textarea
+                  id="privateKey"
+                  rows="6"
+                  placeholder="-----BEGIN OPENSSH PRIVATE KEY-----"
+                ></textarea>
+              </label>
+              <label>
+                Passphrase (optional)
+                <input id="passphrase" type="password" placeholder="optional" />
+              </label>
+            </div>
+
+            <button id="connectButton" type="submit" class="btn btn-primary">Connect</button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="terminal.js"></script>
+  </body>
+</html>

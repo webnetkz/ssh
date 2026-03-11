@@ -1,0 +1,13 @@
+{
+  "name": "ssh-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ssh2": "^1.15.0",
+    "ws": "^8.18.3"
+  }
+}
