@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WireGuard Browser Proxy</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>WireGuard Browser Proxy</h1>
+        <div class="tabs" role="tablist" aria-label="Navigation">
+          <button
+            id="tabMain"
+            class="tab-button active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+          >
+            Main
+          </button>
+          <button
+            id="tabSettings"
+            class="tab-button"
+            type="button"
+            role="tab"
+            aria-selected="false"
+          >
+            Settings
+          </button>
+        </div>
+      </header>
+
+      <section id="panelMain" class="tab-panel active" role="tabpanel">
+        <h2 class="section-title">Proxy Profiles</h2>
+        <ul id="profilesList" class="profiles-list"></ul>
+        <div id="profilesEmpty" class="profiles-empty">No profiles yet. Import a proxy file.</div>
+
+        <div class="main-actions">
+          <input
+            id="configFile"
+            class="hidden"
+            type="file"
+            accept=".txt,.json,.conf,text/plain,application/json"
+          />
+          <button id="pickFileButton" type="button" class="primary">Import Proxy File</button>
+        </div>
+      </section>
+
+      <section id="panelSettings" class="tab-panel" role="tabpanel" hidden>
+        <div class="settings-top">
+          <label>
+            Profile
+            <select id="profileSelect"></select>
+          </label>
+          <div class="settings-top-actions">
+            <button id="newProfileButton" type="button">New</button>
+            <button id="deleteProfileButton" type="button" class="danger">Delete</button>
+          </div>
+        </div>
+
+        <form id="configForm" novalidate>
+          <label>
+            Profile Name
+            <input id="profileName" type="text" value="proxy" maxlength="32" required />
+          </label>
+
+          <label>
+            Proxy Type
+            <select id="proxyScheme">
+              <option value="socks5">SOCKS5</option>
+              <option value="https">HTTPS</option>
+              <option value="http">HTTP</option>
+            </select>
+            <div id="schemeHint" class="field-hint">
+              HTTP is the most common choice for regular proxy servers.
+            </div>
+          </label>
+
+          <label>
+            Proxy Host
+            <input id="proxyHost" type="text" placeholder="proxy.example.com" required />
+          </label>
+
+          <label>
+            Proxy Port
+            <input id="proxyPort" type="number" min="1" max="65535" value="1080" required />
+          </label>
+
+          <label>
+            Bypass List
+            <input
+              id="bypassList"
+              type="text"
+              value="<local>, localhost, 127.0.0.1"
+              placeholder="<local>, localhost, 127.0.0.1"
+            />
+          </label>
+        </form>
+
+        <div class="settings-actions">
+          <button id="saveSettingsButton" type="button" class="primary">Save Settings</button>
+        </div>
+      </section>
+
+      <pre id="message" class="message" aria-live="polite"></pre>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

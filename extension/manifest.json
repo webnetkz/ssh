@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "WireGuard Browser Proxy",
+  "description": "Browser-only proxy profiles (SOCKS5/HTTPS/HTTP) for Chrome.",
+  "version": "0.4.0",
+  "icons": {
+    "128": "128.png"
+  },
+  "permissions": ["storage", "proxy"],
+  "action": {
+    "default_title": "WireGuard Browser Proxy",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
