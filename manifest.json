@@ -1,24 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "Clean Site",
-  "description": "Clear cookies, storage, cache, and service workers for the current site.",
-  "version": "1.0.2",
+  "name": "Ifconfig IP Copier",
+  "version": "1.1.2",
+  "description": "Displays your public IP from ifconfig.me and lets you copy it.",
   "permissions": [
-    "activeTab",
-    "browsingData",
-    "cookies",
-    "scripting",
-    "tabs"
+    "alarms",
+    "clipboardWrite",
+    "offscreen"
   ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
-  "action": {
-    "default_title": "Clean Site",
-    "default_popup": "popup.html",
-    "default_icon": "128.png"
+  "background": {
+    "service_worker": "background.js"
   },
   "icons": {
+    "16": "128.png",
+    "32": "128.png",
+    "48": "128.png",
     "128": "128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "128.png",
+      "32": "128.png",
+      "48": "128.png",
+      "128": "128.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": ""
   }
 }
